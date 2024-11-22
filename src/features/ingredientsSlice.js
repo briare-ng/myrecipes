@@ -73,6 +73,13 @@ export const ingredientSlice = createSlice({
         (item) => item.ingredient !== action.payload.ingredient
       );
     },
+    deleteIngredientsByRecipeName: (state, action) => {
+      state.value = state.value.filter((item) => {
+        return (
+          item.name !== action.payload.name || item.date !== action.payload.date
+        );
+      });
+    },
     resetIngredient: (state) => {
       state.value = [];
       console.log("ingredients remis à 0");
@@ -88,6 +95,7 @@ export const {
   addIngredients,
   updateIndredients,
   deleteIngredient,
+  deleteIngredientsByRecipeName,
   resetIngredient,
 } = ingredientSlice.actions;
 export const { selectIngredient } = ingredientSlice.selectors;

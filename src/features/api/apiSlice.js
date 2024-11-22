@@ -12,6 +12,17 @@ export const apiSlice = createApi({
     getCategoryRecipes: builder.query({
       query: (category) => `filter.php?c=${category}`,
     }),
+    getRecipeDetails: builder.query({
+      query: (id) => `lookup.php?i=${id}`,
+    }),
+    getSearchResults: builder.query({
+      query: (search) => `search.php?s=${search}`,
+    }),
   }),
 });
-export const { useGetCategoriesQuery, useGetCategoryRecipesQuery } = apiSlice;
+export const {
+  useGetCategoriesQuery,
+  useGetCategoryRecipesQuery,
+  useGetRecipeDetailsQuery,
+  useGetSearchResultsQuery,
+} = apiSlice;

@@ -28,8 +28,6 @@ function CategoriesCard({ category, setCategorySelected }) {
   // }, []);
   const { data, isLoading, isSuccess, isError } = useGetCategoriesQuery();
 
-  console.log(data);
-
   return (
     <>
       <div className="flex flex-wrap gap-4 justify-center bg-slate-200 rounded-lg p-2 shadow-lg shadow-indigo-500/40">

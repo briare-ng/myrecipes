@@ -26,15 +26,15 @@ function MealsList({ category }) {
   //       setError(err.status_message);
   //       setIsLoaded(true);
   //     });
-// }, [category]);
-const queryResult = useGetCategoryRecipesQuery(category);
-// setCategoryData(queryResult.data);
-// console.log("queryResult", queryResult.data);
+  // }, [category]);
+  const queryResult = useGetCategoryRecipesQuery(category);
 
-
-  const list = categoryData.map((data, i) => {
-    return <RecipeCard key={i} {...data} />;
-  });
+  let list = [];
+  if (queryResult.isSuccess) {
+    list = queryResult.data.meals.map((data, i) => {
+      return <RecipeCard key={i} {...data} />;
+    });
+  }
 
   return (
     <>

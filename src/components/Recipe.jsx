@@ -1,31 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useGetRecipeDetailsQuery } from "../features/api/apiSlice";
 
 function Recipe() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [recipeData, setRecipeData] = useState([]);
-  const [error, setError] = useState(null);
+  // const [isLoaded, setIsLoaded] = useState(false);
+  // const [recipeData, setRecipeData] = useState([]);
+  // const [error, setError] = useState(null);
   const { id } = useParams();
-  useEffect(() => {
-    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-      },
-    };
+  // useEffect(() => {
+  //   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  //   const options = {
+  //     method: "GET",
+  //     headers: {
+  //       accept: "application/json",
+  //     },
+  //   };
 
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((data) => {
-        setRecipeData(data.meals[0]);
-        setIsLoaded(true);
-      })
-      .catch((err) => {
-        setError(err.status_message);
-        setIsLoaded(true);
-      });
-  }, []);
+  //   fetch(url, options)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setRecipeData(data.meals[0]);
+  //       setIsLoaded(true);
+  //     })
+  //     .catch((err) => {
+  //       setError(err.status_message);
+  //       setIsLoaded(true);
+  //     });
+  // }, []);
+  const queryResult = useGetRecipeDetailsQuery(id);
+  let recipeData = [];
+  queryResult.isSuccess ? (recipeData = queryResult.data.meals[0]) : null;
 
   const ingredientList = [];
   for (let i = 1; i <= 20; i++) {

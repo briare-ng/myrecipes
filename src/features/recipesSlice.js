@@ -28,11 +28,6 @@ export const recipesSlice = createSlice({
         );
       });
     },
-    deleteIngredientsByRecipeName: (state, action) => {
-      // return (
-      // item.name !== action.payload.name || item.date !== action.payload.date
-      // );
-    },
     resetRecipe: (state) => {
       state.value = [];
     },
@@ -42,7 +37,6 @@ export const recipesSlice = createSlice({
 export const {
   addRecipe,
   deleteRecipe,
-  deleteIngredientsByRecipeName,
   resetRecipe,
 } = recipesSlice.actions;
 export default recipesSlice.reducer;
